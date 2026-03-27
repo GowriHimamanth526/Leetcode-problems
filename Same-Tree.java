@@ -1,31 +1,25 @@
-1// Definition for a binary tree node
-2class TreeNode {
-3    int val;
-4    TreeNode left;
-5    TreeNode right;
-6
-7    TreeNode(int val) {
-8        this.val = val;
-9        this.left = null;
-10        this.right = null;
-11    }
-12}
-13
-14class Solution {
-15
-16    public boolean isSameTree(TreeNode p, TreeNode q) {
-17        // both null
-18        if (p == null && q == null) return true;
+1class TreeNode {
+2    int val;
+3    TreeNode left;
+4    TreeNode right;
+5
+6    TreeNode(int val) {
+7        this.val = val;
+8    }
+9}
+10
+11class Solution {
+12
+13    public boolean isSameTree(TreeNode p, TreeNode q) {
+14        // both null → same
+15        if (p == null && q == null) return true;
+16
+17        // one null → not same
+18        if (p == null || q == null) return false;
 19
-20        // one null
-21        if (p == null || q == null) return false;
-22
-23        // value mismatch
-24        if (p.val != q.val) return false;
-25
-26        // recursive check
-27        return isSameTree(p.left, q.left) &&
-28               isSameTree(p.right, q.right);
-29    }
-30}
-31
+20        // values must match + subtrees must match
+21        return (p.val == q.val)
+22                && isSameTree(p.left, q.left)
+23                && isSameTree(p.right, q.right);
+24    }
+25}
